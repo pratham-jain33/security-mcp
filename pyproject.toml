@@ -1,0 +1,22 @@
+[project]
+name = "security-mcp"
+version = "0.1.0"
+description = "MCP server: zero-key cybersecurity toolkit. Audit any site's security, check if a CVE is actively exploited, look up attack techniques in plain English."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+    "fastmcp>=2.0",
+    "requests>=2.31",
+    "dnspython>=2.0",
+]
+
+[project.scripts]
+security-mcp = "security_mcp.server:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["security_mcp*"]
+
+[tool.setuptools.package-data]
+security_mcp = ["attack_techniques.json"]
