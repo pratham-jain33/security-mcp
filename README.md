@@ -4,6 +4,12 @@ mcp-name: io.github.pratham-jain33/security-mcp
 
 The zero-key cybersecurity toolkit for your AI assistant. No API keys, no signups, no configuration. Install it, ask Claude a security question, get an answer.
 
+## Why
+
+Most security tooling makes you sign up, get an API key, and configure something before you can ask a single question. security-mcp exists so an AI assistant can answer everyday security questions with none of that: every data source it uses is a free public feed, and the one dataset it needs (MITRE ATT&CK) ships inside the package. Defensive only, by design.
+
+## Features
+
 Three tools:
 
 - **audit_site** — grade any website's security from A+ to F. Checks HTTP security headers (HSTS, CSP, X-Frame-Options and more), the SSL/TLS certificate (valid, issuer, days until expiry), and DNS email-auth records (SPF, DMARC, DKIM). Every finding comes with a plain-English explanation.
@@ -39,7 +45,7 @@ Claude Desktop config:
 }
 ```
 
-## Try it
+## Usage
 
 - "Audit the security of example.com"
 - "Is CVE-2021-44228 being exploited right now?"
@@ -52,6 +58,12 @@ Claude Desktop config:
 `check_cve` validates the CVE ID format, then asks two free public sources: the CISA KEV catalog (a JSON feed of vulnerabilities confirmed to be exploited in the wild, cached in memory for an hour) and the FIRST EPSS API (a 0–100% probability of exploitation in the next 30 days). The verdict combines both.
 
 `lookup_attack` searches a compact bundle of the public MITRE ATT&CK catalog (697 techniques, trimmed from MITRE's CTI feed and shipped inside the package). ID lookups are exact; keyword searches rank name matches above description matches.
+
+## Built with
+
+- Python 3.10+, FastMCP (MCP server framework)
+- `requests` for the public data feeds, `dnspython` for DNS lookups
+- Data: CISA Known Exploited Vulnerabilities catalog, FIRST EPSS scores, and a bundled MITRE ATT&CK technique set (697 techniques, shipped in the package)
 
 ## Development
 
